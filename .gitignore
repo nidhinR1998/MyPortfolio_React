@@ -23,15 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment variables (contains API keys)
+# Environment variables (contains API keys) — .env.example is safe to commit
 .env
-.env.*
+.env.local
+.env.production
 
-# Test / debug / temp scripts (contain sensitive API keys)
-test_openai.cjs
-test_gemini.cjs
-test_models.cjs
-test_models.js
+# Test / debug / temp scripts (contains sensitive API keys — use .env for real keys)
 debug_gemini.js
 parse_resume.cjs
 extract_pdf.py
