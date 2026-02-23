@@ -26,7 +26,6 @@ import NeuralNet from './components/NeuralNet';
 import ErrorBoundary from './components/ErrorBoundary';
 import InitialLoader from './components/InitialLoader';
 import DesktopNav from './components/DesktopNav';
-import SidebarPulse from './components/SidebarPulse';
 
 function App() {
   const { isActivated, setIsActivated } = useKonamiCode();
@@ -48,7 +47,6 @@ function App() {
         {/* Left Fixed Panel */}
         <aside className="left-panel">
           <Hero />
-          <SidebarPulse />
         </aside>
 
         {/* Right Scrollable Content */}
