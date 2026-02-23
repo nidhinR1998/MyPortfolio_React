@@ -1,0 +1,106 @@
+.tech-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    /* Prevent marquee expansion */
+}
+
+.tech-header {
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+}
+
+.marquee-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    /* Important for right panel containment */
+    overflow: hidden;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    display: flex;
+}
+
+/* Edge fading effect */
+.marquee-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-fade-left {
+    left: 0;
+    background: linear-gradient(to right, var(--primary-bg), transparent);
+}
+
+.marquee-fade-right {
+    right: 0;
+    background: linear-gradient(to left, var(--primary-bg), transparent);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 2rem;
+    padding-right: 2rem;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    width: fit-content;
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.marquee-reverse .marquee-content {
+    animation: scroll-reverse 45s linear infinite;
+}
+
+.tech-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+.tech-item:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

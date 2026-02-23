@@ -1,0 +1,243 @@
+.pipeline-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 4rem 0 8rem 0;
+    /* Extra bottom margin for modal room */
+}
+
+.pipeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    /* Tall enough to hold branching logic */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(10, 15, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+    .pipeline-container {
+        /* On small screens, we hide the complex horizontal SVG layout 
+           for a simplified vertical CSS flex flow */
+        height: auto;
+        padding: 4rem 2rem;
+    }
+
+    .pipeline-svg {
+        display: none !important;
+    }
+
+    .nodes-wrapper {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column;
+        gap: 4rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    .pipeline-node {
+        position: relative !important;
+        left: unset !important;
+        top: unset !important;
+    }
+
+    /* Draw vertical connecting lines for mobile */
+    .nodes-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+    }
+}
+
+/* Desktop absolute positioning for nodes to match SVG paths */
+.nodes-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    /* Fixed width matching container max-width to lock SVG math */
+    height: 100%;
+    display: flex;
+}
+
+.pipeline-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pipe-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.data-packet {
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.pipeline-node {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    cursor: auto;
+    /* Wait for custom cursor */
+}
+
+.pipeline-node:hover {
+    transform: scale(1.1) translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.4);
+    z-index: 20;
+}
+
+/* Hardcoded desktop positions to perfectly anchor SVG endpoints */
+/* Source: X:50-150, Y:90-210 */
+.source-node {
+    top: 90px;
+    left: 30px;
+}
+
+/* ETL: X:350-500, Y:90-210 */
+.etl-node {
+    top: 90px;
+    left: 350px;
+}
+
+/* Vector: X:700-850, Y:90-210 */
+.vector-node {
+    top: 90px;
+    left: 700px;
+}
+
+/* AI: X:550-700, Y:240-360 */
+.ai-node {
+    top: 240px;
+    left: 550px;
+}
+
+.node-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.pipeline-node:hover .node-icon {
+    transform: rotate(10deg);
+}
+
+.node-label {
+    color: #e2e8f0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    z-index: 2;
+}
+
+.node-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.3;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.pipeline-node:hover .node-glow {
+    opacity: 0.6;
+}
+
+/* Node Detail Overlay */
+.node-modal {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(15, 23, 42, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+}
+
+@media (max-width: 1000px) {
+    .node-modal {
+        position: fixed;
+        bottom: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 9999;
+    }
+}
+
+.node-modal h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.node-modal p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.node-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.node-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}

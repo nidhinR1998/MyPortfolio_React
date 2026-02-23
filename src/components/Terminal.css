@@ -1,0 +1,153 @@
+.terminal-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 4rem 0;
+}
+
+.terminal-window {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    background: rgba(10, 15, 30, 0.8) !important;
+    /* Forces dark mode over glass */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    cursor: text;
+    /* Clicking anywhere focuses input */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1rem;
+    background: rgba(20, 25, 40, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    cursor: default;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    left: 1rem;
+}
+
+.control {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+    /* Hide icons until hover */
+    transition: all 0.2s ease;
+}
+
+.window-controls:hover .control {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.close {
+    background: #ff5f56;
+}
+
+.minimize {
+    background: #ffbd2e;
+}
+
+.maximize {
+    background: #27c93f;
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Terminal Body */
+.terminal-body {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+/* Custom Scrollbar for Terminal */
+.terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.3);
+    border-radius: 10px;
+}
+
+.term-line {
+    font-size: 1rem;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.system-text {
+    color: #94a3b8;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.output-text {
+    color: #e2e8f0;
+    padding-left: 1rem;
+}
+
+.input-text {
+    color: #e2e8f0;
+}
+
+.prompt-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt-prefix {
+    color: #38bdf8;
+    /* Light blue prompt */
+    margin-right: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.term-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    outline: none;
+    caret-color: #38bdf8;
+    /* Blinking cursor matches prompt color */
+}

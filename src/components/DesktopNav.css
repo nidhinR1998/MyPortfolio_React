@@ -1,0 +1,110 @@
+/* Desktop Nav - only visible on large screens (≥ 1024px) */
+.desktop-nav {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: flex;
+        position: fixed;
+        right: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+        pointer-events: auto;
+    }
+}
+
+.desktop-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    padding: 14px 8px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.05);
+}
+
+/* Each nav item is a dot + tooltip */
+.desktop-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tooltip label */
+.desktop-nav-tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    white-space: nowrap;
+    background: rgba(15, 23, 42, 0.9);
+    color: #94a3b8;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(6px);
+}
+
+.desktop-nav-item:hover .desktop-nav-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* The clickable dot button */
+.desktop-nav-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.desktop-nav-dot:hover {
+    transform: scale(1.4);
+}
+
+/* The small inner circle (the dot itself) */
+.dot-core {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #475569;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.desktop-nav-dot.active .dot-core {
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8, 0 0 16px rgba(56, 189, 248, 0.4);
+}
+
+/* Animated ring behind the active dot (via Framer Motion layoutId) */
+.dot-ring {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    pointer-events: none;
+}

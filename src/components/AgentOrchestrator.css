@@ -1,0 +1,233 @@
+.orchestrator-section {
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.orchestrator-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .orchestrator-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Agents Grid */
+.agents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.agent-card {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.agent-card.active {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+.agent-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: 2px solid;
+}
+
+.agent-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: #fff;
+}
+
+.agent-info p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.agent-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.spinning {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Terminal Panel */
+.terminal-panel {
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 350px;
+    backdrop-filter: blur(10px);
+}
+
+.terminal-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dots span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.dots span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.dots span:nth-child(3) {
+    background: #27c93f;
+}
+
+.terminal-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+}
+
+.sim-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sim-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.terminal-body {
+    flex: 1;
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+}
+
+.log-line {
+    line-height: 1.5;
+}
+
+.log-timestamp {
+    color: #475569;
+    margin-right: 10px;
+}
+
+.log-agent {
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.log-text {
+    color: #cbd5e1;
+}
+
+.cursor-blink {
+    color: #38bdf8;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.orchestrator-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-left: 4px solid #38bdf8;
+    border-radius: 0 1rem 1rem 0;
+}
+
+.orchestrator-footer p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.orchestrator-footer strong {
+    color: #38bdf8;
+}
+
+@media (max-width: 640px) {
+    .agents-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .terminal-panel {
+        height: 300px;
+    }
+}

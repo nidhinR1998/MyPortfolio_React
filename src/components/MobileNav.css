@@ -1,0 +1,124 @@
+.mobile-nav-container {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+    padding: 0 16px;
+    pointer-events: none;
+}
+
+.mobile-nav-dock {
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 8px 16px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    padding: 8px 12px;
+    cursor: pointer;
+    position: relative;
+    flex: 1;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item.active {
+    color: #38bdf8;
+}
+
+.icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.active-glow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.item-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+}
+
+.active-indicator {
+    position: absolute;
+    bottom: -4px;
+    width: 4px;
+    height: 4px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+/* 3D App-like feel for the whole screen on mobile */
+@media (max-width: 1024px) {
+
+    /* Hide the default navbar from the top */
+    .navbar {
+        display: none !important;
+    }
+
+    /* Add padding to the bottom of the body to prevent the dock from covering content */
+    body {
+        padding-bottom: 100px;
+    }
+
+    /* Adjust the chat widget FAB to not overlap with the new bottom dock */
+    .chat-fab {
+        bottom: 100px !important;
+        right: 20px !important;
+    }
+}
+
+/* Hide the mobile nav on desktop */
+@media (min-width: 1025px) {
+    .mobile-nav-container {
+        display: none;
+    }
+}
+
+/* Premium micro-interactions */
+.mobile-nav-item:active .icon-wrapper {
+    transform: scale(0.9);
+}
+
+/* Safe areas for notched phones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-nav-container {
+        bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+}

@@ -1,0 +1,134 @@
+.competencies-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.competencies-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.comp-card {
+    border-radius: 1.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.comp-card.active {
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.comp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    cursor: none;
+    user-select: none;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+.comp-header:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.comp-title-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.comp-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    flex-shrink: 0;
+}
+
+.comp-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.comp-toggle-icon {
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comp-header:hover .comp-toggle-icon {
+    color: var(--accent-color);
+}
+
+/* Accordion Body */
+.comp-body {
+    overflow: hidden;
+}
+
+.comp-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.comp-skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.comp-skill-badge:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.comp-skill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+    .comp-header {
+        padding: 1.5rem;
+    }
+
+    .comp-title-group {
+        gap: 1rem;
+    }
+
+    .comp-title {
+        font-size: 1.2rem;
+    }
+
+    .comp-skills-list {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+}
