@@ -14,7 +14,7 @@ const _dk = (e, s) => {
 };
 
 // Initialize Gemini SDK — key is decrypted in memory only when called
-const genAI = new GoogleGenerativeAI(_dk('DyAeCToXFBFIXmgCeBgmDwYnO3doY2dFNyEUPy0PZ2tLc31YNDgp', 'NidhinPF2024'));
+const genAI = new GoogleGenerativeAI(_dk('DyAeCToXFA5lXnt/fyslCw0fGBJmRGZefD0vDjg6IhJ/AAdQfBop', 'NidhinPF2024'));
 
 // System Prompt for Nidhin's AI Assistant
 const getSystemPrompt = (mode = 'professional') => {
@@ -76,7 +76,7 @@ const AIChatWidget = () => {
         const initChat = async () => {
             try {
                 const model = genAI.getGenerativeModel({
-                    model: "gemini-2.5-flash",
+                    model: "gemini-1.5-flash",
                     systemInstruction: {
                         parts: [{ text: getSystemPrompt(aiMode) }]
                     }
