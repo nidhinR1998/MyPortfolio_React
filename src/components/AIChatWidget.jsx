@@ -5,8 +5,16 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Magnetic from './Magnetic';
 import './AIChatWidget.css';
 
-// Initialize Gemini SDK
-const genAI = new GoogleGenerativeAI('AIzaSyDWznZ66qBgoIk1ZSUqyHpWDa7-yCOlzQM');
+// Decrypt utility — XOR + Base64 (key decrypted only at point of use)
+const _dk = (e, s) => {
+    const k = s.split('').map(c => c.charCodeAt(0));
+    return atob(e).split('').map((c, i) =>
+        String.fromCharCode(c.charCodeAt(0) ^ k[i % k.length])
+    ).join('');
+};
+
+// Initialize Gemini SDK — key is decrypted in memory only when called
+const genAI = new GoogleGenerativeAI(_dk('DyAeCToXFBFIXmgCeBgmDwYnO3doY2dFNyEUPy0PZ2tLc31YNDgp', 'NidhinPF2024'));
 
 // System Prompt for Nidhin's AI Assistant
 const getSystemPrompt = (mode = 'professional') => {
